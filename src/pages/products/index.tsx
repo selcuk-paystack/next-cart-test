@@ -1,21 +1,21 @@
-import { GetServerSideProps } from 'next';
-import Head from 'next/head';
+import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
-import Layout from 'components/Layout/Layout';
+import { MainLayout } from 'layouts/MainLayout';
 import { productsApi } from 'services/http/ProductsApi';
 import { Product } from 'types/Product';
 import { ApiResponse } from 'types/Http';
 import { useCart } from 'contexts/cart/CartContext';
+import { CustomPageWithProps } from 'types/Page';
 
-const Products = (props: ApiResponse<Product[]>) => {
+type ProductPageType = ApiResponse<Product[]>;
+
+const Products: CustomPageWithProps<ProductPageType> = props => {
   if (props.type === 'error') {
     return (
-      <Layout>
-        <>
-          <p>{props.error.message}</p>
-          <p>{props.error.status}</p>
-        </>
-      </Layout>
+      <>
+        <p>{props.error.message}</p>
+        <p>{props.error.status}</p>
+      </>
     );
   }
 
@@ -25,41 +25,41 @@ const Products = (props: ApiResponse<Product[]>) => {
   console.log(cart);
 
   return (
-    <Layout>
-      <div className="is-fluid">
-        <div className="columns is-multiline">
-          {products.length &&
-            products.map((product, index) => (
-              <Link
-                key={product.id}
-                href="/products/[id]"
-                as={`/products/${index}`}
-              >
-                <div className="column is-one-quarter">
-                  <div className="card">
-                    <div className="card-image">
-                      <figure className="image is-4by3">
-                        <img src={product.media} alt={product.name} />
-                      </figure>
-                    </div>
-                    <div className="card-content">
-                      <div className="media">
-                        <div className="media-content">
-                          <p className="title is-4">{product.name}</p>
-                          <p className="subtitle is-6">${product.price}</p>
-                        </div>
+    <div className="is-fluid">
+      <div className="columns is-multiline">
+        {products.length &&
+          products.map((product, index) => (
+            <Link
+              key={product.id}
+              href="/products/[id]"
+              as={`/products/${index}`}
+            >
+              <div className="column is-one-quarter">
+                <div className="card">
+                  <div className="card-image">
+                    <figure className="image is-4by3">
+                      <img src={product.media} alt={product.name} />
+                    </figure>
+                  </div>
+                  <div className="card-content">
+                    <div className="media">
+                      <div className="media-content">
+                        <p className="title is-4">{product.name}</p>
+                        <p className="subtitle is-6">${product.price}</p>
                       </div>
-                      <div className="content">{product.description}</div>
                     </div>
+                    <div className="content">{product.description}</div>
                   </div>
                 </div>
-              </Link>
-            ))}
-        </div>
+              </div>
+            </Link>
+          ))}
       </div>
-    </Layout>
+    </div>
   );
 };
+
+Products.Layout = MainLayout;
 
 export const getServerSideProps: GetServerSideProps = async () => {
   try {

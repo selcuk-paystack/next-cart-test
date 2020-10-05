@@ -1,10 +1,10 @@
+import { CartViewAction, CartViewActionTypes } from './cartViewActions';
 import { CartViewState } from './CartViewContext';
 
-export enum CartViewActionTypes {
-  TOGGLE_CART_VIEW = 'TOGGLE_CART_VIEW',
-}
-
-export const cartViewReducer = (state: CartViewState, action) => {
+export const cartViewReducer = (
+  state: CartViewState,
+  action: CartViewAction,
+) => {
   switch (action.type) {
     case CartViewActionTypes.TOGGLE_CART_VIEW:
       return {

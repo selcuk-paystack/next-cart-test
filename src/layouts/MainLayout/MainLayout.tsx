@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
-import Navbar from '../Navbar/Navbar';
+import { Navbar } from 'components/Navbar';
 
-const Layout = ({ children }: { children: ReactElement }) => {
+const MainLayout: React.FC = ({ children }: { children: ReactElement }) => {
   return (
     <div>
       <Navbar />
@@ -10,4 +10,4 @@ const Layout = ({ children }: { children: ReactElement }) => {
   );
 };
 
-export default Layout;
+export { MainLayout };

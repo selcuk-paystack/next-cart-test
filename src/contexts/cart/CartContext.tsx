@@ -4,12 +4,13 @@ import { CartAction } from './cartActions';
 import { cartReducer } from './cartReducer';
 
 export type CartItem = {
-  count: 0;
-  cartItem: Product;
+  count: number;
+  id: number;
+  product: Product;
 };
 
 export type CartState = {
-  cartItems?: Product[];
+  cartItems: CartItem[];
 };
 
 const initialState: CartState = {

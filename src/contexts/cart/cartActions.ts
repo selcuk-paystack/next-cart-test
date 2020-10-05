@@ -1,10 +1,15 @@
 import { Product } from 'types/Product';
-import { CartActionTypes } from './cartReducer';
+
+export enum CartActionTypes {
+  ADD_TO_CART = 'ADD_TO_CART',
+  REMOVE_FROM_CART = 'REMOVE_FROM_CART',
+  EMPTY_CART = 'EMPTY_CART',
+}
 
 export type CartAction = {
   type: CartActionTypes;
   payload?: {
-    cartItem?: Product;
+    product?: Product;
   };
 };
 
@@ -12,7 +17,7 @@ export const addToCart = (product: Product) => {
   return {
     type: CartActionTypes.ADD_TO_CART,
     payload: {
-      cartItem: product,
+      product,
     },
   };
 };
@@ -21,7 +26,7 @@ export const removeFromCart = (product: Product) => {
   return {
     type: CartActionTypes.REMOVE_FROM_CART,
     payload: {
-      cartItem: product,
+      product,
     },
   };
 };

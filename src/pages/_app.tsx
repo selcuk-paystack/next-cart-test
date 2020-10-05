@@ -1,11 +1,15 @@
-import { AppProps } from 'next/app';
+import React from 'react';
 import Head from 'next/head';
 import 'bulma/css/bulma.css';
 import '../styles/globals.scss';
 import { CartProvider } from 'contexts/cart/CartContext';
 import { CartViewProvider } from 'contexts/cartView/CartViewContext';
+import { BuyerInfoProvider } from 'contexts/buyerInfo/BuyerInfoContext';
+import { CustomAppProps } from 'types/Page';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: CustomAppProps) {
+  const Layout = Component.Layout ? Component.Layout : React.Fragment;
+
   return (
     <>
       <Head>
@@ -14,7 +18,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <CartProvider>
         <CartViewProvider>
-          <Component {...pageProps} />
+          <BuyerInfoProvider>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </BuyerInfoProvider>
         </CartViewProvider>
       </CartProvider>
     </>

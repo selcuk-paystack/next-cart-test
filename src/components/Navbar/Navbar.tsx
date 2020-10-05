@@ -1,4 +1,4 @@
-import CartView from 'components/CartView/CartView';
+import { CartView } from 'components/CartView';
 import { useCart } from 'contexts/cart/CartContext';
 import { toggleCartView } from 'contexts/cartView/cartViewActions';
 import { useDispatchCartView } from 'contexts/cartView/CartViewContext';
@@ -11,6 +11,13 @@ const Navbar = () => {
   const toggle = () => {
     dispatchCartView(toggleCartView());
   };
+
+  const cartItemsLength = cartState.cartItems.reduce(
+    (prev, next) => prev + next.count,
+    0,
+  );
+
+  console.log(cartState.cartItems);
 
   return (
     <>
@@ -25,8 +32,7 @@ const Navbar = () => {
               <a className="navbar-item has-text-white">Products</a>
             </Link>
             <button className="button" onClick={toggle}>
-              View cart{' '}
-              {cartState.cartItems.length > 0 && cartState.cartItems.length}
+              View cart {cartState.cartItems.length > 0 && cartItemsLength}
             </button>
           </div>
         </div>
@@ -36,4 +42,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export { Navbar };
