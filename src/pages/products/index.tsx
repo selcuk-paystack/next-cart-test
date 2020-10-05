@@ -7,9 +7,9 @@ import { ApiResponse } from 'types/Http';
 import { useCart } from 'contexts/cart/CartContext';
 import { CustomPageWithProps } from 'types/Page';
 
-type ProductPageType = ApiResponse<Product[]>;
+type ProductPageProps = ApiResponse<Product[]>;
 
-const Products: CustomPageWithProps<ProductPageType> = props => {
+const Products: CustomPageWithProps<ProductPageProps> = props => {
   if (props.type === 'error') {
     return (
       <>
