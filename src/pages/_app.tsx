@@ -8,7 +8,7 @@ import { BuyerInfoProvider } from 'contexts/buyerInfo/BuyerInfoContext';
 import { CustomAppProps } from 'types/Page';
 
 function MyApp({ Component, pageProps }: CustomAppProps) {
-  const Layout = Component.Layout ? Component.Layout : React.Fragment;
+  const Layout = Component.Layout ?? React.Fragment;
 
   return (
     <>
