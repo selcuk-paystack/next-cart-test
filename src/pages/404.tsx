@@ -1,3 +1,4 @@
+import { MainLayout } from 'layouts/MainLayout';
 import Link from 'next/link';
 import { CustomPageWithoutProps } from 'types/Page';
 
@@ -11,5 +12,7 @@ const Custom404: CustomPageWithoutProps = () => {
     </div>
   );
 };
+
+Custom404.Layout = MainLayout;
 
 export default Custom404;

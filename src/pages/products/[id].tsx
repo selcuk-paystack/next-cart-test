@@ -17,7 +17,7 @@ const Products: CustomPageWithProps<IndividualProductPageProps> = (
     return (
       <>
         <p>{props.error.message}</p>
-        <p>{props.error.status}</p>
+        <p>{props.status}</p>
       </>
     );
   }
@@ -87,9 +87,9 @@ export const getServerSideProps: GetServerSideProps = async context => {
     return {
       props: {
         type: 'error',
+        status: error.response?.status,
         error: {
           message: error.message,
-          status: error.response?.status,
         },
       },
     };

@@ -6,9 +6,9 @@ export type SuccessResponse<T> = {
 
 export type ErrorResponse = {
   type: 'error';
+  status?: number;
   error: {
     message: string;
-    status?: number;
   };
 };
 

@@ -1,3 +1,4 @@
+import { MainLayout } from 'layouts/MainLayout';
 import { NextPage } from 'next';
 import Link from 'next/link';
 import { CustomPageWithoutProps } from 'types/Page';
@@ -12,5 +13,7 @@ const Custom500: CustomPageWithoutProps = () => {
     </div>
   );
 };
+
+Custom500.Layout = MainLayout;
 
 export default Custom500;
