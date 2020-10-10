@@ -14,7 +14,8 @@ function MyApp({ Component, pageProps }: CustomAppProps) {
     <>
       <Head>
         <title>Products</title>
-        <link rel="icon" href="/favicon.ico" />
+        {/* https://github.com/vercel/next.js/blob/master/errors/no-document-viewport-meta.md */}
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <CartProvider>
         <CartViewProvider>

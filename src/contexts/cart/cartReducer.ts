@@ -10,27 +10,27 @@ export const cartReducer = (state: CartState, action: CartAction) => {
 
       return foundIndex === -1
         ? {
-          ...state,
-          cartItems: [
-            ...state.cartItems,
-            {
-              count: 1,
-              id: action.payload.product.id,
-              product: action.payload.product,
-            },
-          ],
-        }
+            ...state,
+            cartItems: [
+              ...state.cartItems,
+              {
+                count: 1,
+                id: action.payload.product.id,
+                product: action.payload.product,
+              },
+            ],
+          }
         : {
-          ...state,
-          cartItems: [
-            ...state.cartItems.slice(0, foundIndex),
-            {
-              ...state.cartItems[foundIndex],
-              count: state.cartItems[foundIndex].count += 1
-            },
-            ...state.cartItems.slice(foundIndex + 1),
-          ]
-        }
+            ...state,
+            cartItems: [
+              ...state.cartItems.slice(0, foundIndex),
+              {
+                ...state.cartItems[foundIndex],
+                count: state.cartItems[foundIndex].count += 1,
+              },
+              ...state.cartItems.slice(foundIndex + 1),
+            ],
+          };
     }
 
     case CartActionTypes.REMOVE_FROM_CART: {
